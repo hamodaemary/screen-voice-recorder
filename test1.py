@@ -9,7 +9,6 @@ import customtkinter
 import sounddevice as sound
 from scipy.io.wavfile import write
 import threading
-import time
 customtkinter.set_appearance_mode("System")  # Modes: system (default), light, dark
 customtkinter.set_default_color_theme("blue")
 #اوعي تيجي جنبهم انا ملصمهم
