@@ -8,10 +8,15 @@ from tkinter import *
 import customtkinter
 import sounddevice as sound
 from scipy.io.wavfile import write
+import threading
 customtkinter.set_appearance_mode("System")  # Modes: system (default), light, dark
 customtkinter.set_default_color_theme("blue")
 #اوعي تيجي جنبهم انا ملصمهم
 e = customtkinter.CTk()
+
+def rec1_thread():
+    threading.Thread(target = rec1).start()
+
 def rec1():
     width = GetSystemMetrics(0)
     height = GetSystemMetrics(1)
@@ -53,7 +58,7 @@ fr1.pack()
 
 lbl1 = customtkinter.CTkLabel(fr1,text='The main',font=('Mongolian Baiti',12),fg_color='transparent')
 lbl1.place(relx=0.5,y=10,anchor=tkinter.CENTER)
-z = customtkinter.CTkButton(master=fr1,text='rec',command=rec1,width=100,font=('Mongolian Baiti',12))
+z = customtkinter.CTkButton(master=fr1,text='rec',command=rec1_thread,width=100,font=('Mongolian Baiti',12))
 z.place(relx=0.5,rely=0.3,anchor=tkinter.CENTER)
 
 'TEST'
@@ -64,6 +69,9 @@ label2.place(relx=0.5,rely=0.8,anchor=tkinter.CENTER)
 ''''screen recorder'''
 frg = customtkinter.CTkFrame(master=e,width=200,height=300)
 frg.place(x=800,y=40)
+
+def record_thread():
+    threading.Thread(target = record).start()
 
 def record():
     freq=44100
@@ -77,7 +85,7 @@ b = StringVar()
 b.set('Enter name of wav')
 duration = customtkinter.CTkEntry(master=frg,textvariable=n,font=('Mongolian Baiti',13))
 duration.place(x=35,y=75)
-butto = customtkinter.CTkButton(master=frg,text='rec',command=record,width=70,font=('Mongolian Baiti',13))
+butto = customtkinter.CTkButton(master=frg,text='rec',command=record_thread,width=70,font=('Mongolian Baiti',13))
 butto.place(x=65,y=125)
 lml = customtkinter.CTkLabel(master=frg,text='voice rec',font=('Mongolian Baiti',13))
 lml.place(x=75,y=165)
